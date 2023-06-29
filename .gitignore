@@ -21,5 +21,4 @@
 
 /tools/
 /.idea/
-/.docker/db/
 /.docker/pgadmin-data/

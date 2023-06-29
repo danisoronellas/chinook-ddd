@@ -9,16 +9,18 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_USER: ${POSTGRES_USER}
+    ports:
+      - "52732:5432"
     volumes:
-      - ./.docker/db/data:/var/lib/postgresql/data:rw
+      - ./.docker/postgres/db.sql:/docker-entrypoint-initdb.d/db.sql
 
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:7.4
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - "5050:80"
     volumes:
